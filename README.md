@@ -2,11 +2,11 @@
 ### ssh
 
 ``
-git clone git@github.com:ayoubelmhamdi/curl-ayoub".git $HOME/curl-ayoub"
+git clone git@github.com:ayoubelmhamdi/curl-ayoub.git $HOME/curl-ayoub
 ``
 
 ### https
 
 ``
-git clone https://github.com/ayoubelmhamdi/curl-ayoub".git $HOME/curl-ayoub"
+git clone https://github.com/ayoubelmhamdi/curl-ayoub.git $HOME/curl-ayoub
 ``
