@@ -1,8 +1,10 @@
 #!/bin/bash
-url=$(youtube-dl --youtube-skip-dash-manifest -g $URLP)
+url=$(youtube-dl --youtube-skip-dash-manifest -g $1)
 video_url=$(echo -e $url |sed -n '1 p')
 audio_url=$(echo -e $url |sed -n '2 p')
 retard_time=0
+STARTVIDEOP=60
+ENDVIDEOP=600
 if [[ $STARTVIDEOP -gt 30 ]]; then
     $STARTVIDEOP=$(($STARTVIDEOP-30)) 
     $ENDVIDEOP=$(($ENDVIDEOP-30))
@@ -11,17 +13,17 @@ fi
 
 ffmpeg                        \
     -y                        \
-    -ss "$STARTVIDEOP"        \
+    -ss $STARTVIDEOP        \
     -i  "$video_url"          \
-    -ss "$STARTVIDEOP"        \
+    -ss $STARTVIDEOP        \
     -i  "$audio_url"          \
     -map 0:v                  \
     -map 1:a                  \
-    -ss "$retard_time"        \
-    -t "$ENDVIDEOP"           \
+    -ss $retard_time        \
+    -t $ENDVIDEOP           \
     -c:v libx264              \
     -c:a aac                  \
-    $HOME/storage/movies/vps-output.mp4
+    vps-output.mp4
 
 
 
