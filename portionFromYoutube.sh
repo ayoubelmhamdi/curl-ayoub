@@ -2,25 +2,17 @@
 url=$(youtube-dl --youtube-skip-dash-manifest -g $1)
 video_url=$(echo -e $url |sed -n '1 p')
 audio_url=$(echo -e $url |sed -n '2 p')
-retard_time=0
-STARTVIDEOP=60
-ENDVIDEOP=600
-if [[ $STARTVIDEOP -gt 30 ]]; then
-    $STARTVIDEOP=$(($STARTVIDEOP-30)) 
-    $ENDVIDEOP=$(($ENDVIDEOP-30))
-    retard_time=30
-fi
 
 ffmpeg                        \
     -y                        \
-    -ss $STARTVIDEOP        \
+    -ss 60                    \
     -i  "$video_url"          \
-    -ss $STARTVIDEOP        \
+    -ss 60                    \
     -i  "$audio_url"          \
     -map 0:v                  \
     -map 1:a                  \
-    -ss $retard_time        \
-    -t $ENDVIDEOP           \
+    -ss 30        \
+    -t 600          \
     -c:v libx264              \
     -c:a aac                  \
     vps-output.mp4
